@@ -43,10 +43,9 @@
 \usepackage{hyperref}
 
 % Title page information
-\title{Presentation Title}
-\subtitle{Subtitle}
-\author{Your Name}
-\institute{Hong Kong University of Science and Technology}
+\title{Applications of dynamic game model}
+\subtitle{By Victor Aguirregabiria, Collard-Wexler, and Stephen P. Ryan}
+\author{FENG Huanxi}
 \date{\today}
 
 \begin{document}
@@ -58,56 +57,369 @@
 
 % Table of contents
 \begin{frame}{Outline}
-    \tableofcontents
+    \item Hospital industry: Gowrisankaran and Town (1997)
+    \item    
+    \item Cement industry: Ryan (2012) 
+    \item    
+    \item Hard disk drive industry: Igami \& Uetake (2020)
+    \item   
+    \item Summary of estimation methodology of dynamic game model
+    \item   
+    \item Reference
 \end{frame}
 
-% Section 1
-\section{Introduction}
-\begin{frame}{Introduction}
+%section 1
+\section{Hospital industry: Gowrisankaran and Town (1997)}
+\begin{frame}{Hospital industry: Gowrisankaran and Town (1997)}
     \begin{itemize}
-        \item First point
-        \item Second point
-        \item Third point
+        \item Two types of hospitals (players): for-profit (FP) and non-profit (NP).
+        \item Three types of patients in a market: with Medicare (MD,$\Theta_{MD}$), private insurance (PI, $\Theta_{PI}$), and no insurance (UI, $\Theta_{UI}$).
+        \item Hospitals makes static decisions (price) and dynamic decisions (investment, exit and entry)
+        
     \end{itemize}
 \end{frame}
 
-% Section 2
-\section{Methods}
-\begin{frame}{Methods}
-    \begin{block}{Important Block}
-        Key information goes here
-    \end{block}
-    
+\begin{frame}{Patient's decision}
     \begin{itemize}
-        \item Method 1
-        \item Method 2
+        \item  In a market, a fixed population $X$ is ill. So each type of patients has total number: $\Theta_{MD}M$, $\Theta_{PI}M$, $\Theta_{UI}M$. 
+        \item Hospital$\ j$ is free to set$\ p_j^{NM}$, the base price that it charges for non-medicare patients.
+        \item Poor patients of all medicare types don't have to necessarily pay the full price. The price that each patient must pay is:
+        \begin{align*}
+        p_{ij}^{MD} &= \max\left\{\min\left(d, Y_{i}^{MD}- Y_{MIN}\right), 0\right\} \\
+        p_{ij}^{PI} &= \max\left\{\min\left(cp_{j}^{NM}, Y_{i}^{PI} - Y_{MIN}\right), 0\right\} \\
+        p_{ij}^{UI} &= \max\left\{\min\left(p_{i}^{NM}, Y_{i}^{UI} - Y_{MIN}\right), 0\right\}
+        \end{align*}
+        
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Patient's decision}
+    \begin{itemize}
+        \item  Hence, the utility for patient$\ i$ of type$
+        \ T$ choosing hospital $\ j$ is
+        \begin{align*}
+        U_{ij}^{T} = k_j + \gamma_1 \ln (Y_i^T-\gamma_2 p_{ij}^T)+ \epsilon_{ij}^T  
+        \end{align*}
+        \item  The utility for patient$\ i$ of type$
+        \ T$ buying outside good is
+        \begin{align*}
+        U_{i0}^{T} = \gamma_1 ln (Y_i^T-\gamma_2 p_{i0}^T)+ \epsilon_{i0}^T  
+        \end{align*}
+        \item We can obtain the probability (share) of patient$\ i$ choosing hospital $\ j$:
+        \begin{align*}
+         s_{ij}^{T}(p_{ij}^{T}) &= \frac{\exp\left\{\ k_j + \gamma \ln (\frac{Y_i^T-\gamma_2 p_{ij}^T}{Y_i^T-\gamma_2 p_{i0}^T})\right\}}{1+\sum_{k=1}^J [k_k+\exp(\frac{Y_i^T-\gamma_2 p_{ij}^T}{Y_i^T-\gamma_2 p_{i0}^T})]}
+        \end{align*}
+    
+        
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Hospital's static production decision}
+    \begin{itemize}
+        \item  Each hospital $j$ has identical fixed costs $F$ and differing marginal costs (on each patient) $mc_j=\bar{mc}+bk_j $
+        \item Hence, the gross variable profit of $j$ can be constructed as $\pi_j^{GV}(p^{NM})$
+        \item Hospitals' static decision is to choose $p_j^{NM}$ to maximize the static profits. 
+    
+        
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Hospital's dynamic decision}
+    \begin{itemize}
+        \item  State variable vector $s_t=\left\{k_{it}\right\}_{i=1,2..n}$
+        \item Timing: in each period, players take actions in this order: 
+            \begin{itemize}
+                \item Existing hospitals decides whether to exit. Each firm simultaneously receives an i.i.d. scrap value draw from a uniform distribution $U(\phi-\sigma_{\phi},\phi+\sigma_{\phi})$, and immediately decides whether to accept its scrap value draw and exit forever or stay alive in the current period.
+                \item Then, the remaining incumbents simultaneously invest. Each hospital $j$ invests amount $x_{jt}$ at a cost of $c_I^{FP}$ or $c_I^{FP}$ .
+                \item Next, potential entrants decide whether to enter. There are two potential entrants in each period, one NP and one FP. Each of them receive a sunk cost from distribution $U(S-\sigma_{S},S+\sigma_{S})$. If it enters, it would have an initial quality in the next period.
+                \item Finally, a static game starts.
+            \end{itemize}
+        
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Transition between states}
+    \begin{itemize}
+        \item  Hospital's investment converts to quality in a certain way: \\
+        \[
+        k_j=g(w_j)
+        \]
+        \[
+         w_{j,t+1}=w_{jt}+v_{jt}-\bar v_t
+        \]
+        \begin{equation*}  
+        v_j=\left\{  
+        \begin{array}{lr}  
+        1, \text{with prob.  } ax_{jt}/(1+ax_{jt}) \\
+        0, \text{with prob.  } 1/(1+ax_{jt})    
+        \end{array}  
+        \right.  
+        \end{equation*}
+        
+        \begin{equation*}  
+        \bar v=\left\{  
+        \begin{array}{lr}  
+        1, \text{with prob.  } \delta  \\
+        0, \text{with prob.  } 1-\delta   
+        \end{array}  
+        \right.  
+        \end{equation*}
+        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Estimation method}
+   Nested fixed-point algorithm (NFXP)'s central idea:
+    \begin{itemize}
+        \item Given a structural parameter vector, solve the Bellman equation, get the value function.
+        \item Based on the solution, compute the conditional choice probabilities (CCPs) of actions, examine how well these CCPs match observations.
+        \item Find a parameter vector that causes the predictions to most closely match the data.
+        
+    \end{itemize}
+\end{frame}
+% Section 2
+\section{Cement industry: Ryan (2012)}
+\begin{frame}{Cement industry: Ryan (2012)}  
+    Some features of cement market:
+    \begin{itemize}
+        \item Cement is a fine mineral dust with binding properties, the key ingredient of concrete. Its production generates significant emissions, making it a frequent target of environmental regulations.
+        \item As a concentrated industry, sunk costs of entry and costly investment are important determinants of market structure. 1990 Clean Air Act (CAA) amendment affects the cost structure.
+        \item Cement is a largely homogeneous commodity.
+        \item Cement easily absorbs water from air, making storage expensive. Short shipping distance makes cement markets quasi-independent geographically.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Model's setup}    
+    \begin{itemize}
+        \item Model's key setup:
+            \begin{itemize}
+                \item firm's static decision: quantity of output
+                \item firm's dynamic decision: exit or not, enter or not, invest/divest or not
+                \item state: firms' capacity in the market. Firms' actions affect the state in the next period. 
+            \end{itemize}
+        \item In each period, the sequence of events are:
+            \begin{itemize}
+                \item incumbent firms decide whether to exit the industry
+                \item potential entrants and incumbents who decided not to exit simultaneously make entry and investment decisions.
+                \item incumbent firms compete over quantities in the market.
+                
+            \end{itemize}
+  
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Firms' static decision}    
+    \begin{itemize}
+    \item Each market is full described by the state vector $s_{t}$. $s_{it}$ is firm $i$'s capacity in $t$.
+    \item In each regional market $m$, firms face a constant elasticity of demand curve
+    \[
+    \ln Q_{m}(\alpha) = \alpha_{0m} + \alpha_1 \ln P_{m},
+    \]
+    \item the cost of production is:
+    \[
+    C_i(q_i; \delta) = \delta_0 + \delta_1 q_i + \delta_2 1(q_i > \nu s_i)(q_i - \nu s_i)^2, 
+    \]
+    where $\delta_0$ is fixed cost, $\delta_1$ is constant marginal cost. If output level $q_{i}$ reaches a threshold $\nu s_i$, it would cause extra costs.
+    \item Then, in each period, solve the static Cournot competition, firm $i$'s profit is determined: $\bar{\pi_i}(s;\alpha, \delta)$
+  
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Firms' investment decision}    
+    \begin{itemize}
+   \item Recall that firms can adjust their capacity by investment or divestment $x_i$. The cost of adjustments is:
+   \[
+    \Gamma(x_i;\gamma)=1(x_i>0)(\gamma_{i1}+\gamma_2x_i+\gamma_2x_i^2)+1(x_i<0)(\gamma_{i4}+\gamma_5x_i+\gamma_6x_i^2)
+    \]
+    if invest, $x_i>0$, fixed cost $\gamma_{1}$ is drawn each period from the common distribution $F_{\gamma}$ $N(\mu_{\gamma}^+,\sigma_{\gamma}^+)$.
+    if divest, $x_i<0$, fixed cost $\gamma_{4}$ is drawn each period from the common distribution $G_{\gamma}$ $N(\mu_{\gamma}^-,\sigma_{\gamma}^-)$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Firms' entry and exit decision}    
+    \begin{itemize}
+    
+   \item Sunk cost of entry and scrap value \\
+
+   \begin{equation}  
+    \Phi_i(a_i;k_i,\phi_i)=\left\{  
+     \begin{array}{lr}  
+        -k_i, &(a_i=enter) \\
+        \phi_i, &(a_i=exit)    
+     \end{array}  
+    \right.  
+    \end{equation} 
+    fixed cost of entry $k_i$ is private information, drawn from common distribution $F_k$. \\
+    $\phi_i$ is the payment firms receive when exiting the market (scape value), drawn from common distribution $F_{\phi}$.
+    \item Collecting all the parameters, firm $i$'s per-period payoff function is
+    \[
+    \pi_i(\mathbf{s}, a; \theta) =\pi_i(\mathbf{s}, a; \alpha, \delta, \gamma_i, k_i, \phi_i) =
+    \bar{\pi}_i(\mathbf{s};\alpha, \delta)-\Gamma(x_i;\gamma_i)+ \Phi_i(a_i;k_i,\phi_i)
+    \]
+    
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Transitions between states}    
+    \begin{itemize}
+    
+    \item actions $a_i$ (investment, entry and exit) in $t$ take one period to occur in $s_{t+1}$
+    , \\
+    such as $s_{i,t+1}=s_{it}+x_{it}$
+    
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Equilibrium}    
+    \begin{itemize}
+    \item In a Markovian setting, firms only condition on the current state and their private shocks when making decisions. \\
+    Each firm's strategy $a_i=\sigma(s,\epsilon_i)$
+    \item Then, we get value functions of incumbents and potential entrants
+    \[
+    V_i(\mathbf{s}; \sigma(\mathbf{s}), \theta, \epsilon_i) 
+    \]
+    \item MPNE requires each firm's strategy profile is the best response of competitors' strategy profiles.
+    
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Estimation method}    
+    \begin{itemize}
+    \item Use Bajari, Benkard, and Levin (2007)'s two-step estimation method (BBL)
+    \item Intuition of BBL:  the econometrician lets the agents in the model solve the dynamic program, and ﬁnds parameters of the underlying model such that their behavior is optimal. \\
+    $1^{st}$ step: estimate the reduced-form policy functions $\sigma(s)$ \\
+    $2^{nd}$ step: Based on $\sigma(s)$, recover parameters $\theta$.
+    
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Applications}    
+    \begin{itemize}
+    \item $\theta= \left\{ \alpha, \delta, \gamma, k, \phi \right\}$
+    \item $1^{st}$ step: recover the policy functions governing entry, exit and investment, along with the production relevant parameters \Rightarrow get  
+     $ \sigma(s)$, $\alpha$, $\delta$
+    \item $2^{nd}$ step: take policy functions and restrictions of MPNE to recover the dynamic parameters \Rightarrow get $ \mu_{\gamma}^+, \sigma_{\gamma}^+, \mu_{\gamma}^-, \sigma_{\gamma}^-, \mu_{\phi}, \sigma_{\phi}, \mu_{k}, \sigma_{k}$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Results}    
+    \begin{itemize}
+    \item Finding: the CAA increased the mean entry cost by 22 percent, with no significant change on variance. Moreover,  the increase in entry costs greatly reduces the chances that marginal firms enter a market, and this has significant effects on product market competition.
+    \item Counterfactual analysis: As a result of entry rates, the overall welfare in the US cement market decreased by at least \$810M.
     \end{itemize}
 \end{frame}
 
 % Section 3
-\section{Results}
-\begin{frame}{Results}
-    \begin{columns}
-        \column{0.5\textwidth}
+\section{Hard disk drive industry: Igami \& Uetake (2020)}
+\begin{frame}{Hard disk drive industry: Igami \& Uetake (2020)}
+    \begin{itemize}
+    \item Antitrust towards mergers is the most important area in which IO economists shape the debate on policy.
+    \item Conventional merger analysis takes a proposed merger as given and focuses on its immediate effects on competition. Such a static analysis could be appropriate only if mergers were completely random events. However, \textbf{mergers can be endogenous!}
+    
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Model's setup}
+    \begin{itemize}
+    \item Time is discrete with a finite horizon, $t=0, 1, 2...,T$. The final period $T$ is the time at which the demand for HDDs becomes zero (the industry comes to an end).
+    \item Finite number of incumbent firms, $i=1,2...,n_t$. Potential entrant $i=0$ \\
+    Each firm has productivity on a discretized grid with unit interval $\omega_{it} \in \left\{ \omega^1, \omega^2,...\right\}$, representing its tacit knowledge.
+    \item State variable is $\omega_t$ 
+    \item A potential entrant exists in every period $a^0 \in A^0=\left\{ enter, out\right\}$. \\
+    $a^0$ has sunk cost $k^{a^0}+\epsilon(a_{it}^0)$. \\
+    An incumbent take actions in every period $a \in A=\left\{\text{exit}, \text{innovate}, (\text{propose  merger  to j})_{j≠i},(\text{innovate and propose to j})_{j≠i}, idle \right\}$. \\
+     $a$ has sunk cost $k^{a}+\epsilon(a_{it})$. \\
+   
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Transitions between state}
+    \begin{itemize}
+    \item If incumbent $i$ $a_{it}=exit$, then $\omega_{i,t+1}=\omega^{00}$ ("dead")\\
+    \item If $a_{it}=innovate$, then $\omega_{i,t+1}=\omega_{it}+1$ \\
+    \item If $a_{it}=\text{propose  merger  to j}$, and firm $j$ takes the deal, then $\omega_{i,t+1}=\left\{\omega_{it}, \omega_{jt}\right\}+\triangle_{i, t+1}$. $\triangle_{i, t+1}$ reflects "synergies".
+    
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Timing}
+    \begin{itemize}
+    \item Instead of assuming players simultaneous move in each period, here the authors consider an alternating-move game, in which the time interval is relatively short and only one firm can make a dynamic discrete choice within a period. 
+    \item The timeline of the stochastically alternating moves:
         \begin{itemize}
-            \item Result 1
-            \item Result 2
+            \item At the beginning of each period, nature equally chooses one firm to make a move.
+            \item If it's $i$'s turn to make a move, it observes the current industry state $\omega_t$, draws sunk costs of actions.
+            \item Based on these information, $i$ makes the discrete choice $a_{it} \in A_{it}$. Corresponding sunk costs immediately occurs. \\
+            If $i$ negotiate a merger agreement with $j$, a acquisition price $p_{ij}$ would be paid if the deal is made. It's a take-it-or-leave-it offer.
+            \item All active firms participate static competition, earn period profits and pay costs of operation.
         \end{itemize}
-        
-        \column{0.5\textwidth}
-        % Placeholder for a figure
-        \centering
-        [Your figure here]
-    \end{columns}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Dynamic optimization and equilibrium}
+    \begin{itemize}
+    \item To reach an incumbent firm $i$'s dynamic optimization, the corresponding Bellman equation is:
+    \begin{equation*}
+        V_{it} (\omega_t, \epsilon_{it}) = \pi_{it} (\omega_t) - \phi_t (\omega_{it}) + \max \left\{ \bar V^x_{it}, \bar V^c_{it}, \bar V^i_{it}, \bar V^m_{ijt},  {\bar V^{i\&m}_{ijt}} \right\}
+    \end{equation*} \\
+    $\bar V_{it}^a$ represents conditional values of exiting, idling, innovating, proposing merger to rival $j$, and both merge and innovate. Such as: \\
+    \begin{equation*}
+        \bar {V}^c_{it} (\omega_t, \epsilon^c_{it}) =  \epsilon^c_{it} + \beta E \left[ V_{i,t+1} (\omega_{t+1}) | \omega_t, a_{it} = idle \right],
+    \end{equation*}
+    
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Estimation method}
+    Conditional choice probability (CCP) based method
+    \begin{itemize}
+    \item $1^{st}$ step: estimate reduced-form CCP function  by using data actions and states.
+    \item $2^{nd}$ step: Using these CCP functions, calculate value functions, find optimal structural parameters.
+    
+    \end{itemize}
 \end{frame}
 
 % Section 4
-\section{Conclusion}
-\begin{frame}{Conclusion}
+\section{Summary of estimation methodology of dynamic game model}
+\begin{frame}{Summary of estimation methodology}
     \begin{itemize}
-        \item Main finding 1
-        \item Main finding 2
-        \item Future work
+        \item Full solution methods 
+        \begin{itemize}
+            \item Nested fixed point algorithm (Gowrisankaran and Town, 1997)
+            \item High precision but computationally expensive
+        \end{itemize}
+        \item BBL (Ryan, 2012)
+        \begin{itemize}
+            \item Computationally efficient
+        \end{itemize}
+        
+        
+        \item CCP (Igami and Uetake, 2020)
+        \begin{itemize}
+            \item Computationally efficient
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+% Section 4
+\section{Reference}
+\begin{frame}{Reference}
+    \begin{itemize}
+
+    \item Gowrisankaran, G., \& Town, R. J. (1997). \textbf{Dynamic Equilibrium in the Hospital Industry.} \emph{Journal of Economics \& Management Strategy}, 6(1), 45-74.
+
+    \item Ryan, S. P. (2012).
+    \textbf{The Costs of Environmental Regulation in a Concentrated Industry}.
+    \emph{Econometrica}, 80(3), 1019–1061.
+
+    \item Igami, M., and Uetake, K. (2020).
+    \textbf{Mergers, Innovation, and Entry-Exit Dynamics: Consolidation of the Hard Disk Drive Industry, 1996–2016}.
+    \emph{Review of Economic Studies}, 87(4), 2672–2702.
+      
     \end{itemize}
 \end{frame}
 
