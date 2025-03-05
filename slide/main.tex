@@ -81,7 +81,7 @@
 
 \begin{frame}{Patient's decision}
     \begin{itemize}
-        \item  In a market, a fixed population $X$ is ill. So each type of patients has total number: $\Theta_{MD}M$, $\Theta_{PI}M$, $\Theta_{UI}M$. 
+        \item  In a market, a fixed population $M$ is ill. So each type of patients has total number: $\Theta_{MD}M$, $\Theta_{PI}M$, $\Theta_{UI}M$. 
         \item Hospital$\ j$ is free to set$\ p_j^{NM}$, the base price that it charges for non-medicare patients.
         \item Poor patients of all medicare types don't have to necessarily pay the full price. The price that each patient must pay is:
         \begin{align*}
@@ -108,7 +108,7 @@
         \end{align*}
         \item We can obtain the probability (share) of patient$\ i$ choosing hospital $\ j$:
         \begin{align*}
-         s_{ij}^{T}(p_{ij}^{T}) &= \frac{\exp\left\{\ k_j + \gamma \ln (\frac{Y_i^T-\gamma_2 p_{ij}^T}{Y_i^T-\gamma_2 p_{i0}^T})\right\}}{1+\sum_{k=1}^J [k_k+\exp(\frac{Y_i^T-\gamma_2 p_{ij}^T}{Y_i^T-\gamma_2 p_{i0}^T})]}
+         s_{ij}^{T}(p_{ij}^{T}) &= \frac{\exp\left\{\ k_j + \gamma_1 \ln (\frac{Y_i^T-\gamma_2 p_{ij}^T}{Y_i^T-\gamma_2 p_{i0}^T})\right\}}{1+\sum_{k=1}^J [k_k+\exp(\frac{Y_i^T-\gamma_2 p_{ij}^T}{Y_i^T-\gamma_2 p_{i0}^T})]}
         \end{align*}
     
         
@@ -291,8 +291,6 @@
     \begin{itemize}
     \item Use Bajari, Benkard, and Levin (2007)'s two-step estimation method (BBL)
     \item Intuition of BBL:  the econometrician lets the agents in the model solve the dynamic program, and ﬁnds parameters of the underlying model such that their behavior is optimal. \\
-    $1^{st}$ step: estimate the reduced-form policy functions $\sigma(s)$ \\
-    $2^{nd}$ step: Based on $\sigma(s)$, recover parameters $\theta$.
     
     \end{itemize}
 \end{frame}
