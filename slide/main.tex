@@ -133,7 +133,7 @@
         \item Timing: in each period, players take actions in this order: 
             \begin{itemize}
                 \item Existing hospitals decides whether to exit. Each firm simultaneously receives an i.i.d. scrap value draw from a uniform distribution $U(\phi-\sigma_{\phi},\phi+\sigma_{\phi})$, and immediately decides whether to accept its scrap value draw and exit forever or stay alive in the current period.
-                \item Then, the remaining incumbents simultaneously invest. Each hospital $j$ invests amount $x_{jt}$ at a cost of $c_I^{FP}$ or $c_I^{FP}$ .
+                \item Then, the remaining incumbents simultaneously invest. Each hospital $j$ invests amount $x_{jt}$ at a cost of $c_I^{NP}$ or $c_I^{FP}$ .
                 \item Next, potential entrants decide whether to enter. There are two potential entrants in each period, one NP and one FP. Each of them receive a sunk cost from distribution $U(S-\sigma_{S},S+\sigma_{S})$. If it enters, it would have an initial quality in the next period.
                 \item Finally, a static game starts.
             \end{itemize}
@@ -233,7 +233,7 @@
     \begin{itemize}
    \item Recall that firms can adjust their capacity by investment or divestment $x_i$. The cost of adjustments is:
    \[
-    \Gamma(x_i;\gamma)=1(x_i>0)(\gamma_{i1}+\gamma_2x_i+\gamma_2x_i^2)+1(x_i<0)(\gamma_{i4}+\gamma_5x_i+\gamma_6x_i^2)
+    \Gamma(x_i;\gamma)=1(x_i>0)(\gamma_{i1}+\gamma_2x_i+\gamma_3x_i^2)+1(x_i<0)(\gamma_{i4}+\gamma_5x_i+\gamma_6x_i^2)
     \]
     if invest, $x_i>0$, fixed cost $\gamma_{1}$ is drawn each period from the common distribution $F_{\gamma}$ $N(\mu_{\gamma}^+,\sigma_{\gamma}^+)$.
     if divest, $x_i<0$, fixed cost $\gamma_{4}$ is drawn each period from the common distribution $G_{\gamma}$ $N(\mu_{\gamma}^-,\sigma_{\gamma}^-)$.
@@ -339,7 +339,7 @@
     \begin{itemize}
     \item If incumbent $i$ $a_{it}=exit$, then $\omega_{i,t+1}=\omega^{00}$ ("dead")\\
     \item If $a_{it}=innovate$, then $\omega_{i,t+1}=\omega_{it}+1$ \\
-    \item If $a_{it}=\text{propose  merger  to j}$, and firm $j$ takes the deal, then $\omega_{i,t+1}=\left\{\omega_{it}, \omega_{jt}\right\}+\triangle_{i, t+1}$. $\triangle_{i, t+1}$ reflects "synergies".
+    \item If $a_{it}=\text{propose  merger  to j}$, and firm $j$ takes the deal, then $\omega_{i,t+1}=\text{max}\left\{\omega_{it}, \omega_{jt}\right\}+\triangle_{i, t+1}$. $\triangle_{i, t+1}$ reflects "synergies".
     
     \end{itemize}
 \end{frame}
